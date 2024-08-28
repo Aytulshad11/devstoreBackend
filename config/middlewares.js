@@ -19,7 +19,15 @@ module.exports = [
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
-  'strapi::session',
+  {
+    name: 'strapi::session',
+    config: {
+      key: 'strapi.sid',
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      rolling: true, // Reset the expiration time on every response
+      secure: true, // Set to true if using HTTPS
+    },
+  },
   'strapi::favicon',
   'strapi::public',
 ];
